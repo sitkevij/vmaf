@@ -47,6 +47,6 @@ RUN CPUCOUNT=$(cat /proc/cpuinfo | grep '^processor.*:' | wc -l) \
 		&& pip install --upgrade h5py \
 		&& rm -rf ~/.cache/pip/* \
 
-	&& git clone --depth 1 https://github.com/Netflix/vmaf.git /vmaf
+	&& git clone --depth 1 https://github.com/Netflix/vmaf.git /vmaf \
 
 	&& cd /vmaf && make -j${CPUCOUNT}
