@@ -15,7 +15,12 @@ echo "IMAGE=$IMAGE"
 IMAGE=$IMAGE 			# image name
 # LOCAL_DIR=$OS
 LOCAL_DIR=alpine
-docker build --no-cache --build-arg BASEOS_VER=$BASEOS_VER --build-arg APP_VER=$APP_VERSION -t $USERNAME/$IMAGE:latest -t $USERNAME/$IMAGE:$APP_VERSION $LOCAL_DIR
+docker build --no-cache \
+	--build-arg BASEOS_VER=$BASEOS_VER \
+	--build-arg APP_VER=$APP_VERSION \
+	--build-arg VCS_REF=`git rev-parse --short HEAD` \
+	--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+	-t $USERNAME/$IMAGE:latest -t $USERNAME/$IMAGE:$APP_VERSION $LOCAL_DIR
 echo "# $IMAGE $APP_VERSION $BASE" >$LOCAL_DIR/README.md
 echo "\`\`\`" >>$LOCAL_DIR/README.md
 docker run --rm $USERNAME/$IMAGE >>$LOCAL_DIR/README.md

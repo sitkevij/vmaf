@@ -2,6 +2,8 @@ ARG BASEOS_VER
 FROM $BASEOS_VER
 
 ARG APP_VER
+ARG VCS_REF
+ARG BUILD_DATE
 
 ######## changelog
 # 01 [x] matplotlib: The following required packages can not be built: freetype, png -> freetype-dev, libpng-dev
@@ -15,6 +17,16 @@ ARG APP_VER
 #	sitkevij/vmaf                       1.0                       4122e7a39997        2 hours ago         896MB <-- alpine:3.5
 #	sitkevij/vmaf                       latest                    4122e7a39997        2 hours ago         896MB
 ########
+
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.name="vmaf" \
+      org.label-schema.description="VMAF Docker (Netflix VMAF - Video Multi-Method Assessment Fusion)" \
+      org.label-schema.url="https://hub.docker.com/r/sitkevij/vmaf/" \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url="https://github.com/sitkevij/vmaf" \
+      org.label-schema.vendor="sitkevij" \
+      org.label-schema.version=$APP_VER \
+      org.label-schema.schema-version="1.0"
 
 ENV CPUCOUNT 1
 ENV PYTHONPATH=/vmaf/python/src:$PYTHONPATH
