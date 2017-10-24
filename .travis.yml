@@ -20,6 +20,7 @@ jobs:
       - docker run $DOCKER_USERNAME/$IMAGE
       - docker tag $DOCKER_USERNAME/$IMAGE:latest $DOCKER_USERNAME/$IMAGE:$APP_VER
       - ./unit-test-media.sh
+      - ./unit-test.sh
       after_success:
         - if [ "$TRAVIS_BRANCH" == "master" ]; then
           docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
