@@ -1,5 +1,7 @@
 # vmaf Docker
 
+[![](https://images.microbadger.com/badges/image/sitkevij/vmaf.svg)](https://microbadger.com/images/sitkevij/vmaf "docker layers") [![](https://images.microbadger.com/badges/version/sitkevij/vmaf.svg)](https://microbadger.com/images/sitkevij/vmaf "release version")
+
 There are two ways to run Netflix VMAF Docker:
 
 ## 1. Pull from Docker Hub

@@ -8,14 +8,14 @@ before_install:
 
 env:
   global:
-    - VERSION=alpine IMAGE=vmaf BASEOS_VER=alpine:3.5 APP_VER=0.6.1
+    - VERSION=alpine IMAGE=vmaf BASEOS_VER=alpine:3.5 APP_VER=0.6.1 BUILD_ARG=vmaf:0.6.1-alpine:3.5
     
 jobs:
   include:
     - stage: build, test and deploy image
       script:
       - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - docker build --build-arg BASEOS_VER=$BASEOS_VER --build-arg APP_VER=$APP_VER -t $DOCKER_USERNAME/$IMAGE:latest -t $DOCKER_USERNAME/$IMAGE:$APP_VER $VERSION
+      - ./build-arg.sh $DOCKER_USERNAME $BUILD_ARG
       - docker images
       - docker run $DOCKER_USERNAME/$IMAGE
       - docker tag $DOCKER_USERNAME/$IMAGE:latest $DOCKER_USERNAME/$IMAGE:$APP_VER
