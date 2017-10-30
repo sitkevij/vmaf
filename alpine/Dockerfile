@@ -22,10 +22,12 @@ LABEL org.label-schema.build-date=${BUILD_DATE} \
       org.label-schema.name="vmaf" \
       org.label-schema.description="VMAF Docker (Netflix VMAF - Video Multi-Method Assessment Fusion)" \
       org.label-schema.url="https://hub.docker.com/r/sitkevij/vmaf/" \
+      org.label-schema.usage="https://github.com/sitkevij/vmaf/blob/master/README.md" \
       org.label-schema.vcs-ref=${VCS_REF} \
       org.label-schema.vcs-url="https://github.com/sitkevij/vmaf" \
       org.label-schema.vendor="sitkevij" \
-      org.label-schema.version=${APP_VER}
+      org.label-schema.version=${APP_VER} \
+      maintainer="https://github.com/sitkevij"
 
 ENV CPUCOUNT 1
 ENV PYTHONPATH=/vmaf/python/src:$PYTHONPATH
