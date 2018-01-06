@@ -15,7 +15,8 @@ ARG BUILD_DATE
 #   sitkevij/vmaf                       0.6.1                     814225f39c41        33 minutes ago      821MB <-- alpine:3.5 combined (4) RUN
 #   sitkevij/vmaf                       0.6.1                     ff85178dd93e        7 hours ago         819MB <-- alpine:3.5 combined (6) RUN
 #	sitkevij/vmaf                       1.0                       4122e7a39997        2 hours ago         896MB <-- alpine:3.5
-#	sitkevij/vmaf                       latest                    4122e7a39997        2 hours ago         896MB
+#   sitkevij/vmaf                       0.6.2                     8a25f404f076        16 hours ago        826MB <-- alpine:3.7
+#   sitkevij/vmaf                       0.6.2                     b7eb130fbbb3        About an hour ago   615MB <-- alpine:3.7 with size reduction
 ########
 
 LABEL org.label-schema.build-date=${BUILD_DATE} \
@@ -58,5 +59,11 @@ RUN CPUCOUNT=$(cat /proc/cpuinfo | grep '^processor.*:' | wc -l) \
 		&& pip install --upgrade scikit-learn \
 		&& pip install --upgrade h5py \
 		&& rm -rf ~/.cache/pip/* \
-	&& git clone --depth 1 https://github.com/Netflix/vmaf.git /vmaf \
-	&& cd /vmaf && make -j${CPUCOUNT}
+    && git clone --depth 1 https://github.com/Netflix/vmaf.git /vmaf \
+    && cd /vmaf && make -j${CPUCOUNT} \
+    && rm -rf /vmaf/.git \
+    && rm -rf /vmaf/python/test/resource/yuv \
+    && rm -rf /vmaf/ptools/opencontainers_1_8_4/docs \
+    && rm -rf /vmaf/ptools/opencontainers_1_8_4/tests
+
+
