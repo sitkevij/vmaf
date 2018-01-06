@@ -8,7 +8,7 @@ before_install:
 
 env:
   global:
-    - VERSION=alpine IMAGE=vmaf BASEOS_VER=alpine:3.5 APP_VER=0.6.1 BUILD_ARG=vmaf:0.6.1-alpine:3.5
+    - VERSION=alpine IMAGE=vmaf BASEOS_VER=alpine:3.7 APP_VER=0.6.2 BUILD_ARG=vmaf:0.6.2-alpine:3.7
     
 jobs:
   include:

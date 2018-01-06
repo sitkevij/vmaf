@@ -29,16 +29,16 @@ LABEL org.label-schema.build-date=${BUILD_DATE} \
       org.label-schema.version=${APP_VER} \
       maintainer="https://github.com/sitkevij"
 
+WORKDIR /tmp/vmaf
+
 ENV CPUCOUNT 1
 ENV PYTHONPATH=/vmaf/python/src:$PYTHONPATH
 ENV PYTHONPATH=/vmaf:$PYTHONPATH
 ENV PATH=/vmaf:/vmaf/wrapper:$PATH
 RUN CPUCOUNT=$(cat /proc/cpuinfo | grep '^processor.*:' | wc -l) \
-
 	&& echo -e '@edge http://nl.alpinelinux.org/alpine/edge/main\n@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
 	&& apk update && apk add ca-certificates && update-ca-certificates \
 	&& apk upgrade \
-
 	&& apk add --no-cache \
 		build-base \
 		linux-headers \
@@ -49,7 +49,6 @@ RUN CPUCOUNT=$(cat /proc/cpuinfo | grep '^processor.*:' | wc -l) \
 		gcc \
 		gfortran \
 		hdf5-dev@testing \
-
 	&& apk add --no-cache \
 		python \
 		python-dev \
@@ -59,7 +58,5 @@ RUN CPUCOUNT=$(cat /proc/cpuinfo | grep '^processor.*:' | wc -l) \
 		&& pip install --upgrade scikit-learn \
 		&& pip install --upgrade h5py \
 		&& rm -rf ~/.cache/pip/* \
-
 	&& git clone --depth 1 https://github.com/Netflix/vmaf.git /vmaf \
-
 	&& cd /vmaf && make -j${CPUCOUNT}

@@ -1,6 +1,6 @@
 set -ex
-USERNAME=$1				# docker-hub username
-APP_VER_BASEOS_VER=$2	# opencv:3.3.0-alpine:3.5
+USERNAME=$1             # docker-hub username
+APP_VER_BASEOS_VER=$2   # ./build-arg.sh sitkevij vmaf:0.6.2-alpine:3.7
 echo "1=$1"
 echo "2=$2"
 APP_VERSION=$(echo $APP_VER_BASEOS_VER | cut -f1 -d-)
@@ -12,7 +12,7 @@ echo "USERNAME=$USERNAME"
 echo "APP_VERSION=$APP_VERSION"
 echo "BASEOS_VER=$BASEOS_VER"
 echo "IMAGE=$IMAGE"
-IMAGE=$IMAGE 			# image name
+# IMAGE=$IMAGE            # image name
 # LOCAL_DIR=$OS
 LOCAL_DIR=alpine
 docker build --no-cache \
