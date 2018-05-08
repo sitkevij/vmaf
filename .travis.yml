@@ -14,7 +14,7 @@ jobs:
   include:
     - stage: build, test and deploy image
       script:
-      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - ./build-arg.sh $DOCKER_USERNAME $BUILD_ARG
       - docker images
       - docker run $DOCKER_USERNAME/$IMAGE
