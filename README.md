@@ -1,6 +1,7 @@
 # vmaf Docker
 
 [![](https://images.microbadger.com/badges/image/sitkevij/vmaf.svg)](https://microbadger.com/images/sitkevij/vmaf "docker layers") [![](https://images.microbadger.com/badges/version/sitkevij/vmaf.svg)](https://microbadger.com/images/sitkevij/vmaf "release version")
+[![build](https://travis-ci.org/sitkevij/vmaf.svg?branch=master)](https://travis-ci.org/sitkevij/vmaf) [![pulls](https://img.shields.io/docker/pulls/sitkevij/vmaf.svg?style=plastic)](https://hub.docker.com/r/sitkevij/vmaf/) [![stars](https://img.shields.io/docker/stars/sitkevij/vmaf.svg?style=plastic)](https://hub.docker.com/r/sitkevij/vmaf/)
 
 There are two ways to get VMAF Docker:
 
