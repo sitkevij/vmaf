@@ -81,6 +81,6 @@ out_fmt:
 
 #### Total image size
 ```
-/ # du -h
-633.8M  .
+0.6.2 204MB
 ```
+https://hub.docker.com/r/sitkevij/vmaf/tags/

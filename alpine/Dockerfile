@@ -20,15 +20,15 @@ ARG BUILD_DATE
 ########
 
 LABEL org.label-schema.build-date=${BUILD_DATE} \
-      org.label-schema.name="vmaf" \
-      org.label-schema.description="VMAF Docker (Netflix VMAF - Video Multi-Method Assessment Fusion)" \
-      org.label-schema.url="https://hub.docker.com/r/sitkevij/vmaf/" \
-      org.label-schema.usage="https://github.com/sitkevij/vmaf/blob/master/README.md" \
-      org.label-schema.vcs-ref=${VCS_REF} \
-      org.label-schema.vcs-url="https://github.com/sitkevij/vmaf" \
-      org.label-schema.vendor="sitkevij" \
-      org.label-schema.version=${APP_VER} \
-      maintainer="https://github.com/sitkevij"
+	org.label-schema.name="vmaf" \
+	org.label-schema.description="VMAF Docker (Netflix VMAF - Video Multi-Method Assessment Fusion)" \
+	org.label-schema.url="https://hub.docker.com/r/sitkevij/vmaf/" \
+	org.label-schema.usage="https://github.com/sitkevij/vmaf/blob/master/README.md" \
+	org.label-schema.vcs-ref=${VCS_REF} \
+	org.label-schema.vcs-url="https://github.com/sitkevij/vmaf" \
+	org.label-schema.vendor="sitkevij" \
+	org.label-schema.version=${APP_VER} \
+	maintainer="https://github.com/sitkevij"
 
 WORKDIR /tmp/vmaf
 
@@ -37,33 +37,31 @@ ENV PYTHONPATH=/vmaf/python/src:$PYTHONPATH
 ENV PYTHONPATH=/vmaf:$PYTHONPATH
 ENV PATH=/vmaf:/vmaf/wrapper:$PATH
 RUN CPUCOUNT=$(cat /proc/cpuinfo | grep '^processor.*:' | wc -l) \
-	&& echo -e '@edge http://nl.alpinelinux.org/alpine/edge/main\n@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
-	&& apk update && apk add ca-certificates && update-ca-certificates \
-	&& apk upgrade \
-	&& apk add --no-cache \
-		build-base \
-		linux-headers \
-		git \
-		libpng-dev \
-		freetype-dev \
-		lapack-dev \
-		gcc \
-		gfortran \
-		hdf5-dev@testing \
-	&& apk add --no-cache \
-		python \
-		python-dev \
-		py-pip \
-		&& pip install --upgrade pip \
-		&& pip install --upgrade numpy scipy matplotlib pandas \
-		&& pip install --upgrade scikit-learn \
-		&& pip install --upgrade h5py \
-		&& rm -rf ~/.cache/pip/* \
-    && git clone --depth 1 https://github.com/Netflix/vmaf.git /vmaf \
-    && cd /vmaf && make -j${CPUCOUNT} \
-    && rm -rf /vmaf/.git \
-    && rm -rf /vmaf/python/test/resource/yuv \
-    && rm -rf /vmaf/ptools/opencontainers_1_8_4/docs \
-    && rm -rf /vmaf/ptools/opencontainers_1_8_4/tests
-
-
+&& echo -e '@edge http://nl.alpinelinux.org/alpine/edge/main\n@testing http://nl.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories \
+&& apk update && apk add ca-certificates && update-ca-certificates \
+&& apk upgrade \
+&& apk add --no-cache \
+build-base \
+linux-headers \
+git \
+libpng-dev \
+freetype-dev \
+lapack-dev \
+gcc \
+gfortran \
+hdf5-dev@testing \
+&& apk add --no-cache \
+python \
+python-dev \
+py-pip \
+&& pip install --upgrade pip \
+&& pip install --upgrade numpy scipy matplotlib pandas \
+&& pip install --upgrade scikit-learn \
+&& pip install --upgrade h5py \
+&& rm -rf ~/.cache/pip/* \
+&& git clone --depth 1 https://github.com/Netflix/vmaf.git /vmaf \
+&& cd /vmaf && make -j${CPUCOUNT} \
+&& rm -rf /vmaf/.git \
+&& rm -rf /vmaf/python/test/resource/yuv \
+&& rm -rf /vmaf/ptools/opencontainers_1_8_4/docs \
+&& rm -rf /vmaf/ptools/opencontainers_1_8_4/tests
