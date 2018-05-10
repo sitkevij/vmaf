@@ -41,20 +41,21 @@ RUN CPUCOUNT=$(cat /proc/cpuinfo | grep '^processor.*:' | wc -l) \
 && apk update && apk add ca-certificates && update-ca-certificates \
 && apk upgrade \
 && apk add --no-cache \
-build-base \
-linux-headers \
-git \
-libpng-dev \
-freetype-dev \
-lapack-dev \
-gcc \
-gfortran \
-hdf5-dev@testing \
+	build-base \
+	linux-headers \
+	git \
+	libpng-dev \
+	freetype-dev \
+	lapack-dev \
+	gcc \
+	gfortran \
+	hdf5-dev@testing \
 && apk add --no-cache \
-python \
-python-dev \
-py-pip \
+	python \
+	python-dev \
+	py-pip \
 && pip install --upgrade pip \
+&& pip install --upgrade Cython \
 && pip install --upgrade numpy scipy matplotlib pandas \
 && pip install --upgrade scikit-learn \
 && pip install --upgrade h5py \
